@@ -1,0 +1,30 @@
+/* ProposalCard — neutral single-proposal card (Req 6.2, 6.3).
+ * Layered on top of the shared global `.card` class; uses design tokens only. */
+
+.proposal {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+/* Optional theme label shown above the proposal text. */
+.theme {
+  align-self: flex-start;
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-secondary);
+}
+
+.text {
+  margin: 0;
+  color: var(--color-title);
+}
+
+/* Proposal-specific source text "Dados demonstrativos" (Req 6.3). */
+.source {
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  font-style: italic;
+}

@@ -1,0 +1,44 @@
+/* ResultCard — candidate affinity result row (Req 12.2, 12.3).
+ * Layered on the shared global `.card` class; uses design tokens only. Every
+ * candidate row uses this identical structure/styling regardless of ideology or
+ * party, with no party colors (Req 14.2, 14.5). */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.summary {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.photo {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--color-bg);
+  flex-shrink: 0;
+}
+
+.identity {
+  flex: 1;
+  min-width: 0;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--color-title);
+}
+
+.overall {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--color-secondary);
+  font-variant-numeric: tabular-nums;
+  flex-shrink: 0;
+}

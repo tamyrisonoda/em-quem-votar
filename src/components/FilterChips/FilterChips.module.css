@@ -1,0 +1,38 @@
+/* FilterChips — brand-neutral navy/blue only (Req 14.5). Uses design tokens. */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+}
+
+.chip {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 500;
+  color: var(--color-secondary);
+  background: var(--color-card);
+  border: 1px solid rgba(59, 111, 182, 0.35);
+  border-radius: 999px;
+  padding: var(--space-xs) var(--space-md);
+}
+
+/* Hover/focus visual state (Req 16.6) */
+.chip:hover,
+.chip:focus-visible {
+  color: var(--color-title);
+  border-color: var(--color-secondary);
+}
+
+/* Pressed/active state for the currently selected filter (Req 3.6) */
+.active {
+  color: var(--color-card);
+  background: var(--color-secondary);
+  border-color: var(--color-secondary);
+}
+
+.active:hover,
+.active:focus-visible {
+  color: var(--color-card);
+}

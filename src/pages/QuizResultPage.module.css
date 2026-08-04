@@ -1,0 +1,56 @@
+/* QuizResultPage — neutral token styling only (Req 14.5, 15.3).
+ * The result view frames affinity as comparison/proximity, never a
+ * recommendation (Req 12.4, 12.5). */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.title {
+  margin: 0;
+  font-size: 0.875rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+}
+
+.heading {
+  margin: 0;
+  font-size: 1.5rem;
+  color: var(--color-title);
+}
+
+.explanation {
+  margin: 0;
+  padding: var(--space-md);
+  font-size: 0.95rem;
+  line-height: 1.5;
+  color: var(--color-text-secondary);
+  background: var(--color-card);
+  border-left: 3px solid var(--color-secondary);
+  border-radius: 8px;
+}
+
+.results {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.item {
+  margin: 0;
+}

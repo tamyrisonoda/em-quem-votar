@@ -1,0 +1,84 @@
+/* QuizIntroPage — affinity quiz introduction (Req 9).
+ * Mobile-first (Req 15.1); uses design tokens only, brand-neutral navy/blue
+ * with no party colors (Req 14.5). The start control gets hover/focus states
+ * (Req 16.6); the global :focus-visible outline (Req 16.5) supplies focus. */
+
+.intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.title {
+  margin: 0;
+  font-size: 1.75rem;
+}
+
+.lead {
+  margin: 0;
+  color: var(--color-text-secondary);
+  max-width: 60ch;
+}
+
+.themesCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.sectionTitle {
+  margin: 0;
+  font-size: 1.25rem;
+}
+
+.themeList {
+  margin: 0;
+  padding-left: var(--space-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.themeItem {
+  color: var(--color-title);
+}
+
+.actions {
+  display: flex;
+  justify-content: center;
+}
+
+/* Link styled as a button (Req 9.3, 9.4). Remains a native, keyboard-operable
+ * control (Req 16.4). */
+.startButton {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 999px;
+  background-color: var(--color-secondary);
+  color: var(--color-card);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.startButton:hover,
+.startButton:focus-visible {
+  background-color: var(--color-title);
+  transform: translateY(-1px);
+}
+
+@media (min-width: 768px) {
+  .title {
+    font-size: 2.25rem;
+  }
+}

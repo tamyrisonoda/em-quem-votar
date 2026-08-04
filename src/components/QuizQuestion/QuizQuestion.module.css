@@ -1,0 +1,53 @@
+/* QuizQuestion — neutral token styling only (Req 14.5). */
+
+.question {
+  margin: 0;
+  padding: var(--space-lg);
+  background: var(--color-card);
+  border: none;
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+}
+
+.legend {
+  padding: 0;
+  font-weight: 600;
+  font-size: 1.125rem;
+  color: var(--color-title);
+}
+
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  margin-top: var(--space-md);
+}
+
+.option {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.radio {
+  width: 18px;
+  height: 18px;
+  accent-color: var(--color-secondary);
+  cursor: pointer;
+}
+
+/* Visible focus indicator (Req 16.5) */
+.radio:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+}
+
+.label {
+  color: var(--color-title);
+  cursor: pointer;
+}
+
+/* Hover/focus visual state (Req 16.6) */
+.option:hover .label {
+  color: var(--color-secondary);
+}

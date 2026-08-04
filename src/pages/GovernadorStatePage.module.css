@@ -1,0 +1,81 @@
+/* GovernadorStatePage — neutral token styling only (Req 14.5, 15.3). */
+
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+  max-width: 480px;
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.prompt {
+  color: var(--color-title);
+  font-size: 1.5rem;
+  margin: 0;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.select {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1rem;
+  color: var(--color-title);
+  background: var(--color-card);
+  border: 1px solid rgba(27, 42, 74, 0.16);
+  border-radius: 8px;
+}
+
+.select:hover {
+  border-color: var(--color-secondary);
+}
+
+.select:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+  border-color: var(--color-secondary);
+}
+
+.continue {
+  align-self: flex-start;
+  padding: var(--space-sm) var(--space-lg);
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-card);
+  background: var(--color-title);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.continue:hover {
+  background: var(--color-secondary);
+}
+
+.continue:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+}
+
+.continue:disabled {
+  background: var(--color-text-secondary);
+  opacity: 0.5;
+  cursor: not-allowed;
+}

@@ -1,0 +1,47 @@
+/* CandidateList — candidate-listing section (Req 3.3, 3.13, 14.2).
+ * Neutral token-based styling only; every candidate card uses the shared
+ * CandidateCard layout so no candidate/party is visually favored (Req 14.2). */
+
+.list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.head {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.title {
+  margin: 0;
+  color: var(--color-title);
+}
+
+.subtitle {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.95rem;
+}
+
+/* Responsive, mobile-first grid (Req 15.1). Single column on small screens,
+ * auto-filling columns as width allows. */
+.grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-md);
+}
+
+@media (min-width: 600px) {
+  .grid {
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  }
+}
+
+.noResults {
+  margin: 0;
+  padding: var(--space-lg);
+  text-align: center;
+  color: var(--color-text-secondary);
+}

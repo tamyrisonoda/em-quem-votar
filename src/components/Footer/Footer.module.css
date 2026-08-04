@@ -1,0 +1,16 @@
+/* Footer — brand-neutral navy/blue only (Req 14.5). Uses design tokens. */
+
+.footer {
+  background: var(--color-card);
+  border-top: 1px solid rgba(27, 42, 74, 0.08);
+  margin-top: var(--space-lg);
+}
+
+.inner {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+}

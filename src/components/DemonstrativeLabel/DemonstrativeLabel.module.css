@@ -1,0 +1,9 @@
+/* DemonstrativeLabel — neutral marker for fictional mock content (Req 14.1). */
+
+.label {
+  display: inline-block;
+  color: var(--color-text-secondary);
+  font-size: 0.75rem;
+  font-style: italic;
+  line-height: 1.4;
+}

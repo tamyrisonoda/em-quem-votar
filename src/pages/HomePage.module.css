@@ -1,0 +1,127 @@
+/* HomePage — entry page layout (Req 1).
+ * Mobile-first (Req 15.1); uses design tokens only, brand-neutral navy/blue
+ * with no party colors (Req 14.5). Interactive controls get hover/focus states
+ * (Req 16.6); the global :focus-visible outline (Req 16.5) supplies focus. */
+
+.home {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xl);
+  padding-top: var(--space-xl);
+  padding-bottom: var(--space-xl);
+}
+
+.hero {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logo {
+  margin: 0;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  color: var(--color-secondary);
+  font-size: 0.95rem;
+}
+
+.headline {
+  margin: 0;
+  font-size: 1.75rem;
+  max-width: 22ch;
+}
+
+.subtext {
+  margin: 0;
+  color: var(--color-text-secondary);
+  max-width: 60ch;
+}
+
+.sectionTitle {
+  margin: 0 0 var(--space-md);
+  font-size: 1.25rem;
+  text-align: center;
+}
+
+/* Office navigation: stack on mobile, side-by-side on larger viewports */
+.officeNav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.officeCard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+.officeCard:hover,
+.officeCard:focus-visible {
+  box-shadow: 0 8px 24px rgba(27, 42, 74, 0.16);
+  transform: translateY(-2px);
+}
+
+.officeName {
+  font-weight: 700;
+  font-size: 1.1rem;
+  color: var(--color-title);
+}
+
+.officeHint {
+  color: var(--color-text-secondary);
+  font-size: 0.9rem;
+}
+
+.quizCta {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.quizText {
+  margin: 0;
+  color: var(--color-text-secondary);
+  max-width: 50ch;
+}
+
+/* Link styled as a button (Req 1.7). Remains a native, keyboard-operable
+ * control (Req 16.4). */
+.quizButton {
+  display: inline-block;
+  padding: var(--space-sm) var(--space-lg);
+  border-radius: 999px;
+  background-color: var(--color-secondary);
+  color: var(--color-card);
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.15s ease, transform 0.15s ease;
+}
+
+.quizButton:hover,
+.quizButton:focus-visible {
+  background-color: var(--color-title);
+  transform: translateY(-1px);
+}
+
+@media (min-width: 768px) {
+  .headline {
+    font-size: 2.25rem;
+  }
+
+  .officeNav {
+    flex-direction: row;
+  }
+
+  .officeCard {
+    flex: 1;
+  }
+}

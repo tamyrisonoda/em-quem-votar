@@ -1,0 +1,83 @@
+/* Global styles — Em Quem Votar
+ * Mobile-first base rules (Req 15.1), centered content column (Req 15.2),
+ * shared card treatment (Req 15.4), and a visible global focus indicator
+ * (Req 16.5). Palette values come from tokens.css. */
+
+/* Box model reset */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+/* Mobile-first base (Req 15.1) */
+html {
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial,
+    sans-serif;
+  line-height: 1.5;
+  color: var(--color-title);
+  background-color: var(--color-bg);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Headings use the dark-navy title color by default (Req 15.3) */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--color-title);
+  margin: 0 0 var(--space-md);
+  line-height: 1.2;
+}
+
+p {
+  margin: 0 0 var(--space-md);
+}
+
+a {
+  color: var(--color-secondary);
+}
+
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Centered content column (Req 15.2)
+ * Mobile: full width with comfortable horizontal padding.
+ * Desktop: constrained to a max-width between 1100–1200px, centered. */
+.container {
+  width: 100%;
+  max-width: var(--container-max);
+  margin-inline: auto;
+  padding-inline: var(--space-md);
+}
+
+@media (min-width: 768px) {
+  .container {
+    padding-inline: var(--space-lg);
+  }
+}
+
+/* Shared card treatment — rounded corners + soft shadow (Req 15.4) */
+.card {
+  background-color: var(--color-card);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  padding: var(--space-lg);
+}
+
+/* Global visible focus indicator (Req 16.5).
+ * Only applies to keyboard focus so mouse users don't see the outline. */
+:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+}

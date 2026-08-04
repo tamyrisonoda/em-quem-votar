@@ -1,0 +1,49 @@
+/* ProfileTabs — brand-neutral navy/blue only (Req 14.5). Uses design tokens. */
+
+.tabs {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.tablist {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-xs);
+  border-bottom: 1px solid rgba(59, 111, 182, 0.25);
+}
+
+.tab {
+  appearance: none;
+  cursor: pointer;
+  font: inherit;
+  font-weight: 600;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid transparent;
+  padding: var(--space-sm) var(--space-md);
+  margin-bottom: -1px;
+}
+
+/* Hover/focus visual state (Req 16.6) */
+.tab:hover,
+.tab:focus-visible {
+  color: var(--color-title);
+}
+
+/* Visible focus indicator (Req 16.5) */
+.tab:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+}
+
+/* Active (selected) tab state (Req 4.4) */
+.active {
+  color: var(--color-title);
+  border-bottom-color: var(--color-secondary);
+}
+
+.panel {
+  min-width: 0;
+}

@@ -1,0 +1,31 @@
+/* Design tokens — Em Quem Votar
+ * Brand-neutral navy/blue palette only. No party colors are used as the
+ * primary visual identity (Req 14.5). Consumed by global.css and component
+ * CSS Modules via var(--token). */
+
+:root {
+  /* Palette (Req 15.3) */
+  --color-title: #1b2a4a;          /* dark navy — titles and primary elements */
+  --color-secondary: #3b6fb6;      /* medium blue — secondary elements */
+  --color-bg: #f5f7fb;             /* near-white bluish — page background */
+  --color-card: #ffffff;           /* white — content cards */
+  --color-text-secondary: #6b7890; /* bluish-gray — secondary text */
+
+  /* Cards (Req 15.4) */
+  --radius-card: 16px;                              /* rounded corners */
+  --shadow-card: 0 4px 16px rgba(27, 42, 74, 0.08); /* soft shadow */
+
+  /* Layout (Req 15.2) */
+  --container-max: 1160px;         /* centered desktop column, 1100–1200px */
+
+  /* Focus (Req 16.5) */
+  --focus-outline: 2px solid var(--color-secondary);
+  --focus-offset: 2px;
+
+  /* Spacing scale */
+  --space-xs: 4px;
+  --space-sm: 8px;
+  --space-md: 16px;
+  --space-lg: 24px;
+  --space-xl: 32px;
+}

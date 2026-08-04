@@ -1,0 +1,111 @@
+/* CandidateProfileHeader — neutral token styling only (Req 14.5, 15.3).
+ * Large circular photo via border-radius: 50%. Uses shared design tokens. */
+
+.header {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.back {
+  align-self: flex-start;
+  background: transparent;
+  border: 1px solid rgba(59, 111, 182, 0.35);
+  border-radius: var(--radius-card);
+  color: var(--color-secondary);
+  cursor: pointer;
+  font: inherit;
+  padding: var(--space-sm) var(--space-md);
+}
+
+.back:hover,
+.back:focus-visible {
+  background: var(--color-bg);
+  border-color: var(--color-secondary);
+}
+
+.identity {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-lg);
+  text-align: center;
+}
+
+/* Large CIRCULAR photo (Req 4.1) */
+.photo {
+  width: 160px;
+  height: 160px;
+  border-radius: 50%;
+  object-fit: cover;
+  background: var(--color-bg);
+  box-shadow: var(--shadow-card);
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.name {
+  margin: 0;
+  color: var(--color-title);
+  font-size: 1.75rem;
+}
+
+.meta {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: var(--space-md);
+  margin: 0;
+}
+
+.metaItem {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.metaLabel {
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-text-secondary);
+}
+
+.metaValue {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-title);
+}
+
+/* Neutral ideology tag — single neutral style, not party colors (Req 14.2, 14.5) */
+.ideology {
+  display: inline-block;
+  padding: var(--space-xs) var(--space-md);
+  border-radius: 999px;
+  background: var(--color-bg);
+  color: var(--color-secondary);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+
+/* Desktop: place photo beside details */
+@media (min-width: 640px) {
+  .identity {
+    flex-direction: row;
+    align-items: center;
+    text-align: left;
+  }
+
+  .details {
+    align-items: flex-start;
+  }
+
+  .meta {
+    justify-content: flex-start;
+  }
+}

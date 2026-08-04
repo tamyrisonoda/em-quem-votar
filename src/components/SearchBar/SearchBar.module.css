@@ -1,0 +1,38 @@
+/* SearchBar — neutral token styling only (Req 14.5). */
+
+.searchBar {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+}
+
+.label {
+  font-weight: 500;
+  font-size: 0.875rem;
+  color: var(--color-text-secondary);
+}
+
+.input {
+  width: 100%;
+  padding: var(--space-sm) var(--space-md);
+  font-size: 1rem;
+  color: var(--color-title);
+  background: var(--color-card);
+  border: 1px solid rgba(27, 42, 74, 0.16);
+  border-radius: 8px;
+}
+
+.input::placeholder {
+  color: var(--color-text-secondary);
+}
+
+/* Hover/focus visual state (Req 16.6) */
+.input:hover {
+  border-color: var(--color-secondary);
+}
+
+.input:focus-visible {
+  outline: var(--focus-outline);
+  outline-offset: var(--focus-offset);
+  border-color: var(--color-secondary);
+}

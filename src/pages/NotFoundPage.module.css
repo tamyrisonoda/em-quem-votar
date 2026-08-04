@@ -1,0 +1,33 @@
+/* NotFoundPage — neutral token styling only (Req 14.5, 15.3). */
+
+.notFound {
+  padding-top: var(--space-xl, 2rem);
+  padding-bottom: var(--space-xl, 2rem);
+  text-align: center;
+}
+
+.title {
+  color: var(--color-title);
+  margin-bottom: var(--space-sm, 0.5rem);
+}
+
+.message {
+  color: var(--color-text-secondary);
+  margin-bottom: var(--space-lg, 1.5rem);
+}
+
+.homeLink {
+  display: inline-block;
+  color: var(--color-secondary);
+  font-weight: 500;
+  text-decoration: none;
+  padding: var(--space-xs, 0.25rem) var(--space-md, 1rem);
+  border-radius: 8px;
+}
+
+/* Hover/focus visual state (Req 16.6) */
+.homeLink:hover,
+.homeLink:focus-visible {
+  color: var(--color-title);
+  text-decoration: underline;
+}

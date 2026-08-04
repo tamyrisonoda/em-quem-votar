@@ -1,0 +1,49 @@
+/* Header — brand-neutral navy/blue only (Req 14.5). Uses design tokens. */
+
+.header {
+  background: var(--color-card);
+  border-bottom: 1px solid rgba(27, 42, 74, 0.08);
+  box-shadow: var(--shadow-card);
+}
+
+/* Mobile-first: stack logo and nav, wrap as needed (Req 15.1) */
+.inner {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: var(--space-sm);
+  padding-top: var(--space-md);
+  padding-bottom: var(--space-md);
+}
+
+.logo {
+  font-weight: 700;
+  font-size: 1.125rem;
+  letter-spacing: 0.02em;
+  color: var(--color-title);
+  text-decoration: none;
+}
+
+.nav {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-md);
+}
+
+.navLink {
+  color: var(--color-secondary);
+  text-decoration: none;
+  font-weight: 500;
+  padding: var(--space-xs) var(--space-sm);
+  border-radius: 8px;
+}
+
+/* Hover/focus visual state (Req 16.6) */
+.logo:hover,
+.navLink:hover,
+.navLink:focus-visible {
+  color: var(--color-title);
+  text-decoration: underline;
+}

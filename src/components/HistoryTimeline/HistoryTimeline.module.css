@@ -1,0 +1,58 @@
+/* HistoryTimeline — neutral token styling only (Req 14.5). Uses design tokens. */
+
+.timeline {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-lg);
+}
+
+.entries {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  border-left: 2px solid rgba(59, 111, 182, 0.25);
+}
+
+.entry {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-xs);
+  padding-left: var(--space-md);
+}
+
+.year {
+  font-weight: 700;
+  color: var(--color-title);
+}
+
+.event {
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.empty {
+  color: var(--color-text-secondary);
+  font-style: italic;
+  margin: 0;
+}
+
+.votacoes {
+  background: var(--color-bg);
+  border-radius: var(--radius-card);
+  padding: var(--space-md);
+}
+
+.votacoesHeading {
+  margin: 0 0 var(--space-xs);
+  color: var(--color-title);
+  font-size: 1rem;
+}
+
+.votacoesPlaceholder {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-style: italic;
+}

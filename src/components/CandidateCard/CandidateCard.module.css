@@ -1,0 +1,86 @@
+/* CandidateCard — uniform candidate summary card (Req 3.10, 3.11, 14.2).
+ * Layered on the shared global `.card` class; uses design tokens only. Every
+ * candidate uses this identical structure/styling regardless of ideology or
+ * party, and the ideology tag uses a single neutral style (no party colors,
+ * Req 14.2, 14.5). */
+
+.card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-sm);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  height: 100%;
+  transition: box-shadow 0.15s ease, transform 0.15s ease;
+}
+
+/* Hover/focus visual state (Req 16.6). Focus outline itself is provided
+ * globally via :focus-visible in global.css (Req 16.5). */
+.card:hover,
+.card:focus-visible {
+  box-shadow: 0 8px 24px rgba(27, 42, 74, 0.16);
+  transform: translateY(-2px);
+}
+
+.photo {
+  width: 96px;
+  height: 96px;
+  border-radius: 50%;
+  object-fit: cover;
+  background-color: var(--color-bg);
+}
+
+.body {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-xs);
+  width: 100%;
+}
+
+.name {
+  margin: 0;
+  font-size: 1.1rem;
+  color: var(--color-title);
+}
+
+.meta {
+  margin: 0;
+  display: inline-flex;
+  gap: var(--space-sm);
+  align-items: baseline;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.number {
+  font-weight: 600;
+  color: var(--color-title);
+}
+
+.office {
+  margin: 0;
+  color: var(--color-text-secondary);
+  font-size: 0.875rem;
+}
+
+.state {
+  margin: 0;
+  font-weight: 600;
+  color: var(--color-secondary);
+  font-size: 0.875rem;
+}
+
+/* Neutral ideology tag — single style for ALL ideologies (Req 14.2). */
+.ideologyTag {
+  margin-top: var(--space-xs);
+  padding: 2px 10px;
+  border-radius: 999px;
+  background-color: var(--color-bg);
+  color: var(--color-secondary);
+  border: 1px solid var(--color-secondary);
+  font-size: 0.75rem;
+  font-weight: 600;
+}
