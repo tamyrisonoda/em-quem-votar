@@ -19,7 +19,7 @@
 //
 // Validates / supports: Requirements 13.5, 2.3, 3.1, 3.2, 4.5, 10.1, 9.2.
 
-import { candidates } from '../data/candidates.js';
+import { candidates } from '../data/dataSource.js';
 import { questions } from '../data/questions.js';
 import { proposalThemes, quizThemes, states } from '../data/topics.js';
 

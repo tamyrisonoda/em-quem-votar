@@ -118,7 +118,7 @@ export default function CandidateProfileHeader({ candidate, onBack }) {
           </dl>
 
           <span className={styles.ideology} data-testid="candidate-ideology">
-            {ideology}
+            {ideology || 'Não informado'}
           </span>
         </div>
       </div>

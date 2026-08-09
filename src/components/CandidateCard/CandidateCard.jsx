@@ -67,7 +67,7 @@ export default function CandidateCard({ candidate }) {
           <p className={styles.state}>{state}</p>
         ) : null}
 
-        <span className={styles.ideologyTag}>{ideology}</span>
+        <span className={styles.ideologyTag}>{ideology || 'Não informado'}</span>
       </div>
     </Link>
   );

@@ -95,6 +95,15 @@ export default function QuizResultPage() {
   // Documented choice: rank both offices' candidates together (see file header).
   const candidates = [...(presidentes ?? []), ...(governadores ?? [])];
 
+  // Only candidates with a COMPLETE set of quiz positions can be ranked — this
+  // keeps the quiz honest with real data (candidates not yet analysed are not
+  // shown with a misleading 0%). Demonstrative candidates all carry positions,
+  // so nothing changes in demo mode.
+  const QUIZ_POSITION_KEYS = ['economia', 'estado', 'seguranca', 'meioAmbiente', 'educacao'];
+  const scored = candidates.filter(
+    (c) => c && c.positions && QUIZ_POSITION_KEYS.every((k) => typeof c.positions[k] === 'number'),
+  );
+
   // theme id -> display label, so the per-theme breakdown is human-readable.
   const themeLabels = (themes ?? []).reduce((map, theme) => {
     map[theme.id] = theme.label;
@@ -102,12 +111,12 @@ export default function QuizResultPage() {
   }, {});
 
   // candidate id -> record, to hand each ResultCard its candidate in rank order.
-  const candidatesById = candidates.reduce((map, candidate) => {
+  const candidatesById = scored.reduce((map, candidate) => {
     map[candidate.id] = candidate;
     return map;
   }, {});
 
-  const results = computeResults(answers, questionList, candidates);
+  const results = computeResults(answers, questionList, scored);
 
   return (
     <section className={`container ${styles.page}`}>
@@ -123,21 +132,29 @@ export default function QuizResultPage() {
         para explorar e formar a sua própria conclusão.
       </p>
 
-      <ol className={styles.results}>
-        {results.map((result) => {
-          const candidate = candidatesById[result.candidateId];
-          if (!candidate) return null;
-          return (
-            <li key={result.candidateId} className={styles.item}>
-              <ResultCard
-                candidate={candidate}
-                result={result}
-                themeLabels={themeLabels}
-              />
-            </li>
-          );
-        })}
-      </ol>
+      {results.length === 0 ? (
+        <p className={styles.explanation}>
+          Ainda não há candidatos avaliados para o quiz. As posições dos
+          candidatos são definidas a partir dos planos de governo e de fontes
+          públicas, e serão publicadas conforme a análise for concluída.
+        </p>
+      ) : (
+        <ol className={styles.results}>
+          {results.map((result) => {
+            const candidate = candidatesById[result.candidateId];
+            if (!candidate) return null;
+            return (
+              <li key={result.candidateId} className={styles.item}>
+                <ResultCard
+                  candidate={candidate}
+                  result={result}
+                  themeLabels={themeLabels}
+                />
+              </li>
+            );
+          })}
+        </ol>
+      )}
     </section>
   );
 }
