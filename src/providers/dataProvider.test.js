@@ -13,7 +13,7 @@ import {
   OFFICE_PRESIDENTE,
   OFFICE_GOVERNADOR,
 } from './dataProvider.js';
-import { candidates } from '../data/candidates.js';
+import { candidates } from '../data/dataSource.js';
 import { proposalThemes, quizThemes, states } from '../data/topics.js';
 import { questions } from '../data/questions.js';
 

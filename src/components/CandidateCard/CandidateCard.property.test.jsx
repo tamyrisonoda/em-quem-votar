@@ -37,10 +37,10 @@ describe('CandidateCard — Property 8: renders all required fields', () => {
           const container = renderCard(candidate);
           const text = container.textContent;
 
-          // Name, electoral number, office, party, ideology tag are all present.
+          // Name, electoral number, party, ideology tag are all present.
+          // (Office is intentionally not shown on the card.)
           expect(text).toContain(candidate.name);
           expect(text).toContain(candidate.number);
-          expect(text).toContain(candidate.position);
           expect(text).toContain(candidate.party);
           expect(text).toContain(candidate.ideology);
 
@@ -74,10 +74,9 @@ describe('CandidateCard — Property 8: renders all required fields', () => {
           const container = renderCard(candidate);
           const text = container.textContent;
 
-          // Baseline required fields still hold.
+          // Baseline required fields still hold (office is not shown).
           expect(text).toContain(candidate.name);
           expect(text).toContain(candidate.number);
-          expect(text).toContain(candidate.position);
           expect(text).toContain(candidate.party);
           expect(text).toContain(candidate.ideology);
 

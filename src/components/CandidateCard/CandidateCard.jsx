@@ -21,6 +21,14 @@ import styles from './CandidateCard.module.css';
 export const GOVERNADOR_OFFICE = 'Governador';
 
 /**
+ * Imagem de reserva (SVG embutido, sem rede) exibida quando a foto oficial do
+ * candidato ainda não existe ou não carrega.
+ * @type {string}
+ */
+export const FALLBACK_PHOTO =
+  "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='96' height='96'%3E%3Crect width='96' height='96' fill='%23e2e8f0'/%3E%3Ccircle cx='48' cy='38' r='18' fill='%23b6c2d9'/%3E%3Crect x='20' y='62' width='56' height='30' rx='15' fill='%23b6c2d9'/%3E%3C/svg%3E";
+
+/**
  * Candidate summary card.
  *
  * Controlled purely by its `candidate` prop. The entire card is a `Link` to
@@ -51,7 +59,16 @@ export default function CandidateCard({ candidate }) {
       className={`card ${styles.card}`}
       aria-label={`Ver perfil de ${name}`}
     >
-      <img className={styles.photo} src={photo} alt={altText} />
+      <img
+        className={styles.photo}
+        src={photo || FALLBACK_PHOTO}
+        alt={altText}
+        onError={(e) => {
+          if (e.currentTarget.src !== FALLBACK_PHOTO) {
+            e.currentTarget.src = FALLBACK_PHOTO;
+          }
+        }}
+      />
 
       <div className={styles.body}>
         <h3 className={styles.name}>{name}</h3>
@@ -60,8 +77,6 @@ export default function CandidateCard({ candidate }) {
           <span className={styles.number}>Nº {number}</span>
           <span className={styles.party}>{party}</span>
         </p>
-
-        <p className={styles.office}>{position}</p>
 
         {isGovernador && state ? (
           <p className={styles.state}>{state}</p>

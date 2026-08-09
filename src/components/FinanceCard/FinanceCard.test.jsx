@@ -5,7 +5,7 @@ import FinanceCard, {
   SOURCES_HEADING,
   formatTotal,
 } from './FinanceCard.jsx';
-import { DEMONSTRATIVE_TEXT } from '../DemonstrativeLabel/DemonstrativeLabel.jsx';
+import { SOURCE_TEXT } from '../DemonstrativeLabel/DemonstrativeLabel.jsx';
 
 // Example tests for the FinanceCard component (Req 7.1, 7.2, 7.3, 7.4).
 describe('FinanceCard', () => {
@@ -57,9 +57,9 @@ describe('FinanceCard', () => {
     expect(bars[0]).toHaveAttribute('aria-valuenow', '60');
   });
 
-  it('includes the demonstrative-data label (Req 7.4)', () => {
+  it('includes the data-source label (Req 7.4)', () => {
     render(<FinanceCard finances={finances} />);
-    expect(screen.getByText(DEMONSTRATIVE_TEXT)).toBeInTheDocument();
+    expect(screen.getByText(SOURCE_TEXT)).toBeInTheDocument();
   });
 
   it('renders safely with no sources', () => {

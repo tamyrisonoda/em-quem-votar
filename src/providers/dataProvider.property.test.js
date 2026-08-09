@@ -18,7 +18,7 @@ import {
   getCandidatesByOffice,
   OFFICE_GOVERNADOR,
 } from './dataProvider.js';
-import { candidates } from '../data/candidates.js';
+import { candidates } from '../data/dataSource.js';
 import { officeArb, ufArb } from '../test/generators.js';
 
 // Feature: em-quem-votar, Property 2: Provider scopes candidates by office and state

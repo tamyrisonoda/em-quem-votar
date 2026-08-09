@@ -24,7 +24,7 @@ import generatedCandidates from './candidates.generated.json';
  * (candidatos deferidos + curadoria editorial de ideologia/posições).
  * @type {boolean}
  */
-export const USE_TSE_DATA = false;
+export const USE_TSE_DATA = true;
 
 /** Indica se há dados reais disponíveis no arquivo gerado. */
 export const hasGeneratedData =

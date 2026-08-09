@@ -14,6 +14,7 @@
 // Validates: Requirements 4.1, 4.2, 16.3.
 
 import { useNavigate } from 'react-router-dom';
+import { FALLBACK_PHOTO } from '../CandidateCard/CandidateCard.jsx';
 import styles from './CandidateProfileHeader.module.css';
 
 /**
@@ -81,8 +82,13 @@ export default function CandidateProfileHeader({ candidate, onBack }) {
       <div className={styles.identity}>
         <img
           className={styles.photo}
-          src={photo}
+          src={photo || FALLBACK_PHOTO}
           alt={buildPhotoAlt(candidate)}
+          onError={(e) => {
+            if (e.currentTarget.src !== FALLBACK_PHOTO) {
+              e.currentTarget.src = FALLBACK_PHOTO;
+            }
+          }}
         />
 
         <div className={styles.details}>

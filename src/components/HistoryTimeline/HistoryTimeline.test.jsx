@@ -4,7 +4,7 @@ import HistoryTimeline, {
   VOTACOES_HEADING,
   VOTACOES_PLACEHOLDER,
 } from './HistoryTimeline.jsx';
-import { DEMONSTRATIVE_TEXT } from '../DemonstrativeLabel/DemonstrativeLabel.jsx';
+import { SOURCE_TEXT } from '../DemonstrativeLabel/DemonstrativeLabel.jsx';
 
 // Example tests for the HistoryTimeline component (Req 8.1, 8.2, 8.3, 8.4).
 describe('HistoryTimeline', () => {
@@ -50,9 +50,9 @@ describe('HistoryTimeline', () => {
     expect(screen.getByText(VOTACOES_PLACEHOLDER)).toBeInTheDocument();
   });
 
-  it('includes the demonstrative-data label (Req 8.4)', () => {
+  it('includes the data-source label (Req 8.4)', () => {
     render(<HistoryTimeline history={history} />);
-    expect(screen.getByText(DEMONSTRATIVE_TEXT)).toBeInTheDocument();
+    expect(screen.getByText(SOURCE_TEXT)).toBeInTheDocument();
   });
 
   it('renders a friendly message when history is empty', () => {

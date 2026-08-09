@@ -47,10 +47,11 @@ function mapOffice(cargoNome) {
   return cargoNome ?? '';
 }
 
-// Placeholder de foto quando o TSE ainda não publicou a imagem oficial.
-function photoFor(nome) {
-  const label = encodeURIComponent(nome ?? 'Candidato');
-  return `https://placehold.co/400x400?text=${label}`;
+// URL da foto oficial do candidato no TSE. Padrão do DivulgaCandContas:
+//   /divulga/rest/arquivo/img/{idEleicao}/{idCandidato}/{UE}
+// (UE = "BR" para presidente, ou a sigla da UF para governador).
+function tsePhotoUrl(id, uf) {
+  return `https://divulgacandcontas.tse.jus.br/divulga/rest/arquivo/img/${ELEICAO_ID}/${id}/${uf}`;
 }
 
 /**
@@ -75,11 +76,12 @@ function mapCandidate(c, { uf }) {
     name: c.nomeUrna ?? c.nomeCompleto ?? 'Sem nome',
     nomeCompleto: c.nomeCompleto ?? null, // extra (informativo)
     number: String(c.numero ?? ''),
-    party: c.nomeColigacao ?? c.partido?.sigla ?? 'N/D',
+    party: c.partido?.sigla ?? 'N/D', // sigla do PARTIDO (ex.: PT), não a coligação
+    coligacao: c.nomeColigacao ?? null, // nome da coligação/federação, se houver
     position: office,
     state: uf === 'BR' ? null : uf,
     situacao: c.descricaoSituacao ?? null, // ex.: "Aguardando julgamento" / "Deferido"
-    photo: c.fotoUrl ?? photoFor(c.nomeUrna),
+    photo: c.fotoUrl ?? tsePhotoUrl(id, uf),
 
     // ------ Campos EDITORIAIS (mesclados de src/data/editorial.js) ------
     ideology: ed.ideology ?? null,

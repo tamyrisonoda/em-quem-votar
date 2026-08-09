@@ -2,7 +2,7 @@ import { describe, it, expect } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import CandidateProfilePage, { NOT_FOUND_MESSAGE } from './CandidateProfilePage.jsx';
-import { candidates } from '../data/candidates.js';
+import { candidates } from '../data/dataSource.js';
 
 // Render CandidateProfilePage inside a router with a :id route param so
 // useParams resolves. (Req 4.1, 4.3, 4.5)
@@ -32,9 +32,13 @@ describe('CandidateProfilePage', () => {
     expect(tabLabels).toEqual(['Bio', 'Propostas', 'Finanças', 'Histórico']);
   });
 
-  it('shows the biography summary on the default Bio tab (Req 5.1)', () => {
+  it('shows the Bio tab with Formação and Trajetória cards (Req 5.1, 5.2, 5.3)', () => {
     renderAt(candidate.id);
-    expect(screen.getByText(candidate.bio)).toBeInTheDocument();
+    // The biography summary is shown when present (may be empty for real data
+    // whose editorial bio has not been curated yet).
+    if (candidate.bio) {
+      expect(screen.getByText(candidate.bio)).toBeInTheDocument();
+    }
     expect(screen.getByText('Formação')).toBeInTheDocument();
     expect(screen.getByText('Trajetória')).toBeInTheDocument();
   });

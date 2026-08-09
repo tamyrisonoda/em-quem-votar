@@ -31,15 +31,17 @@ function renderCard(candidate) {
 }
 
 describe('CandidateCard', () => {
-  it('renders name, electoral number, office, party, and ideology tag (Req 3.10)', () => {
+  it('renders name, electoral number, party, and ideology tag (Req 3.10)', () => {
     const candidate = makeCandidate();
     renderCard(candidate);
 
     expect(screen.getByText('Aurora Vidal')).toBeInTheDocument();
     expect(screen.getByText(/Nº\s*10/)).toBeInTheDocument();
-    expect(screen.getByText('Presidente da República')).toBeInTheDocument();
     expect(screen.getByText('PMS')).toBeInTheDocument();
     expect(screen.getByText('Esquerda')).toBeInTheDocument();
+    // Office label is intentionally not shown on the card (redundant on a
+    // per-office listing), so it must NOT appear.
+    expect(screen.queryByText('Presidente da República')).not.toBeInTheDocument();
   });
 
   it('renders the photo with descriptive, non-empty alt text (Req 16.3)', () => {
@@ -79,8 +81,8 @@ describe('CandidateCard', () => {
     const candidate = makeCandidate({ position: 'Presidente da República', state: null });
     renderCard(candidate);
 
-    // No stray UF text; the office remains Presidente.
-    expect(screen.getByText('Presidente da República')).toBeInTheDocument();
+    // The candidate still renders, but no stray UF text appears.
+    expect(screen.getByText('Aurora Vidal')).toBeInTheDocument();
     expect(screen.queryByText('SP')).not.toBeInTheDocument();
   });
 });

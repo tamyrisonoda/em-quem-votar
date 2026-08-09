@@ -87,14 +87,23 @@ describe('QuizResultPage', () => {
     expect(RESULT_HEADING).toBe('Candidatos com maior afinidade com suas respostas');
   });
 
-  it('renders one result card per candidate (Req 12.2)', async () => {
+  it('ranks exactly the candidates that have curated quiz positions (Req 12.2)', async () => {
     renderResult({ answerAll: true });
-    const candidateCount =
-      getCandidatesByOffice(OFFICE_PRESIDENTE).length +
-      getCandidatesByOffice(OFFICE_GOVERNADOR).length;
-    // Each ResultCard is an <article>; count those rather than every <li>,
-    // since each card embeds a per-theme breakdown list of its own.
-    expect(await screen.findAllByRole('article')).toHaveLength(candidateCount);
+    await screen.findByText(RESULT_HEADING);
+
+    // Only candidates with a COMPLETE set of quiz positions are ranked; with
+    // real (uncurated) data this is zero, and the page shows a notice instead.
+    const QUIZ_KEYS = ['economia', 'estado', 'seguranca', 'meioAmbiente', 'educacao'];
+    const scored = [
+      ...getCandidatesByOffice(OFFICE_PRESIDENTE),
+      ...getCandidatesByOffice(OFFICE_GOVERNADOR),
+    ].filter((c) => c.positions && QUIZ_KEYS.every((k) => typeof c.positions[k] === 'number'));
+
+    // Each ResultCard is an <article>.
+    expect(screen.queryAllByRole('article')).toHaveLength(scored.length);
+    if (scored.length === 0) {
+      expect(screen.getByText(/ainda não há candidatos avaliados/i)).toBeInTheDocument();
+    }
   });
 
   it('displays the proximity / not-a-recommendation explanation (Req 12.4)', async () => {

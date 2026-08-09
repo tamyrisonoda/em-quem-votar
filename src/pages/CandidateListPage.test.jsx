@@ -4,6 +4,11 @@ import userEvent from '@testing-library/user-event';
 import { MemoryRouter, Routes, Route } from 'react-router-dom';
 import CandidateListPage from './CandidateListPage.jsx';
 import { SEARCH_PLACEHOLDER } from '../components/SearchBar/SearchBar.jsx';
+import {
+  getCandidatesByOffice,
+  OFFICE_PRESIDENTE,
+  OFFICE_GOVERNADOR,
+} from '../providers/dataProvider.js';
 
 // Render/integration tests for CandidateListPage. The page pulls REAL data via
 // the Data_Provider (no mocks) and composes SearchBar + FilterChips +
@@ -43,11 +48,14 @@ function renderGovernador(uf) {
 
 describe('CandidateListPage', () => {
   it('lists Presidente candidates and renders the shared controls (Req 3.1, 3.3, 3.4, 3.6)', () => {
+    const pres = getCandidatesByOffice(OFFICE_PRESIDENTE);
     renderPresidente();
 
-    // 5 Presidente candidates in the Data_Store.
-    expect(screen.getByText('5 candidatos disponíveis')).toBeInTheDocument();
-    expect(screen.getAllByRole('link')).toHaveLength(5);
+    // Count and cards match exactly what the Data_Provider returns.
+    expect(
+      screen.getByText(`${pres.length} candidatos disponíveis`)
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole('link')).toHaveLength(pres.length);
 
     // SearchBar (Req 3.4) and FilterChips (Req 3.6) are present.
     expect(
@@ -59,24 +67,36 @@ describe('CandidateListPage', () => {
   });
 
   it('scopes the Governador list by the :uf route param (Req 3.2)', () => {
+    const sp = getCandidatesByOffice(OFFICE_GOVERNADOR, 'SP');
     renderGovernador('SP');
 
-    // Only the two SP Governador candidates should be shown.
-    expect(screen.getByText('2 candidatos disponíveis')).toBeInTheDocument();
-    expect(screen.getByText('Marina Castro')).toBeInTheDocument();
-    expect(screen.getByText('Otávio Lemos')).toBeInTheDocument();
-    expect(screen.queryByText('Tereza Albuquerque')).not.toBeInTheDocument();
+    // The subtitle count and card count match exactly the SP-scoped list.
+    expect(
+      screen.getByText(`${sp.length} candidatos disponíveis`)
+    ).toBeInTheDocument();
+    expect(screen.getAllByRole('link')).toHaveLength(sp.length);
+    if (sp.length > 0) {
+      expect(screen.getByText(sp[0].name)).toBeInTheDocument();
+    }
   });
 
   it('filters the displayed candidates as the user types a search query (Req 3.5, 3.3)', async () => {
     const user = userEvent.setup();
+    const pres = getCandidatesByOffice(OFFICE_PRESIDENTE);
+    const target = pres[0];
+    // A candidate whose name does NOT start with the target's first name token,
+    // so it should be filtered out when we search for the target.
+    const firstToken = target.name.split(' ')[0];
+    const other = pres.find((c) => !c.name.includes(firstToken));
+
     renderPresidente();
 
-    await user.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), 'Aurora');
+    await user.type(screen.getByPlaceholderText(SEARCH_PLACEHOLDER), target.name);
 
-    expect(screen.getByText('1 candidatos disponíveis')).toBeInTheDocument();
-    expect(screen.getByText('Aurora Vidal')).toBeInTheDocument();
-    expect(screen.queryByText('Beatriz Nunes')).not.toBeInTheDocument();
+    expect(screen.getByText(target.name)).toBeInTheDocument();
+    if (other) {
+      expect(screen.queryByText(other.name)).not.toBeInTheDocument();
+    }
   });
 
   it('shows the no-results message when a search matches nothing (Req 3.13)', async () => {
